@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>iframe</title>
+</head>
+<body>
+	<iframe id="streamer" style="width: 80%;height: 900px;" src="http://10.0.0.174:9000/app?token=aa4dd522789437bcaf07bc5f2524488e&runType=box&isShowUEMessageTestInput=0" onmouseover="setFocus();"></iframe>
+</body>
+<script type="text/javascript">
+	function setFocus() {
+          document.getElementById('streamer').contentWindow.focus();
+    }
+</script>
+
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./static/css/jquery-confirm.min.css" >
+  <link rel="stylesheet" href="./static/css/webapp.css?v=7896112516">
+  <title>云流化系统</title>
+  <style>
+    #desktop {
+      position: relative;
+      margin :0px auto;
+      background-image: url('./static/image/bigloadback.jpg');
+      background-position: center center;
+      background-size: cover;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      width: 100%;  /*此处设置串流在页面中的宽度*/
+      height: 100%;  /*此处设置串流在页面中的高度*/
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .datachannel{
+      transform: translateZ(997px);
+      position: absolute;
+      right: 0px;
+      z-index: 9999;
+      width: 200px;
+      top: 30%;
+      height: 100px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<div id="desktop">
+  <div class="datachannel">
+    <!--消息收发的输入框，可自由改造-->
+    <form role="form">
+      <textarea class="form-control" name="showChannelData" id="showChannelData" cols="20" rows="5" readonly="readonly">接受到的数据...</textarea><br>
+      <textarea class="form-control" name="sendChannelData" id="sendChannelData" cols="20" rows="5">请输入指令..</textarea><br>
+      <button class="btn btn-block" id="sendChannelDataBtn" type="button">发送</button>
+    </form>
+  </div>
+</div>
+<script type="text/javascript" src="./static/js/jquery1.10.min.js"></script>
+<script type="text/javascript" src="./static/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./static/js/jquery-confirm.min.js"></script>
+<script type="text/javascript" src="./static/js/jquery.qrcode.min.js"></script>
+<script type="text/javascript" src="./static/js/custom-protocol-check.min.js"></script>
+<script type="text/javascript" src="./static/js/adapter-8.0.js"></script>
+<script type="text/javascript" src="./static/js/webstream.min.js?v=1.312717c741"></script>
+<script type="text/javascript" src="./static/js/webaudio.min.js?v=20223330"></script>
+<script type="text/javascript" src="./static/js/dolitcloud.pack.min.js?v=1.369169"></script>
+<script type="text/javascript" src="./static/js/vconsole.min.js?v=980666"></script>
+<script type="text/javascript" src="./static/js/md5.js?v=980666"></script>
+<script>
+  $(function(){
+    var isIE = checkIE(); //检查浏览器是否ie,如果是ie，提示暂不支持
+    var webServerAddr= "http://127.0.0.1:9000"; //流路的目标服务器地址,后面不可有/结尾
+    if(isIE){
+      var errHtml = '<div id="instructions"> <img  class="clogo" src=\"'+webServerAddr+'/static/image/clogo.png"/><span class="load-msg load-process">当前应用暂不支持IE浏览器，请尝试更换其他浏览器</span></div>';
+      $("#desktop").append(errHtml);
+    }
+    var powerHtml = '<div class="power"><img onerror="hide(this)"  class="power-img" src=\"'+webServerAddr+'/static/image/powerby.png"/></div>';
+    $("#desktop").append(powerHtml);
+    var connToken  = "c5c3f911af64a3a38fdd3cb26ffbxxxx";//connToken:流路访问token.如果url中已经存在，则此参数可留为空字符串
+    //下面三个参数不建议在前端生成，而是由后端生成，渲染到前端，或者ajax异步从后端获取，保证userSign的生成规则不暴露在前端
+    var reqTime = Math.ceil(new Date().getTime()/1000).toString(); //当前时间戳
+    var userKey = "153d6d17"; //请求key
+    var userSign= getUserSign(reqTime,userKey); //请求Sign,生成算法 userSign = Md5(Md5(userKey+"dolitclouddesktop")+Md5(userKey+reqTime))
+    var LoadParams = {
+      webServerAddr : webServerAddr, //流路的目标服务器地址
+      reqTime       : reqTime,
+      userKey       : userKey,
+      userSign      : userSign,
+      connToken     : connToken,
+      connMode      : "sdk", //sdk模式
+      runType       : "box", //app模式和box。3d类应用选box,可隐藏默认鼠标使用远端鼠标
+      pointerMode   : "default", //鼠标模式，配合runType使用
+      moveMode      : "default", //预留，不可更改
+      loadSkin      : "default", //预留，不可更改
+      loadType      : "stream",  //加载模式，支持管理端web端口 可选： auto stream 以及留空
+      group         : "",        //应用识别码 ，loadType为auto时填写应用识别码
+      forceRenderMode : "default",  //强制使用的渲染类型
+      isForceControlMode:  false , // 是否强制抢占操控主控模式
+      isShowViewOnlyMask: true , //进入旁观模式时是否显示遮罩
+      isShowSetBar  :  true ,  //是否显示设置图标
+      isShowKeyBar  :  true ,  //是否显示键盘图标
+      isShowMenu    :  false , //是否默认显示菜单
+      isShowParam   :  false , //是否默认显示延迟等参数
+      isShortcutParam: true ,  //是否启用显示隐藏延迟参数的快捷键
+      isShowPointer :  true ,  //是否显示用户浏览器所在系统的鼠标
+      isShowRemotePointer :  false ,  // 是否显示远端所在系统的鼠标
+      isReceiveAudio:  true ,  //是否接受音频
+      isAutoExists:  1 ,  //页面没有人操作超过一定时间时是否自动退出
+      isShowReloadMenu : true, //是否显示重启按钮
+      isShowDefinitionMenu : true, //是否显示清晰度列表
+      isShowScaleMenu : true, //是否显示画面比例菜单
+      isShowResolutionMenu : true, //是否显示分辨率列表
+      isShowShortcutControlMenu : true,//是否显示控制按钮
+      menuPositionMode : "top", //菜单开关按钮默认位置
+      menuStyleMode : "oval", //菜单开关按钮默认样式
+      moveHandle : "add_abs", // default add_abs,旧版本的cloudapp添加此参数兼容无限移动， 新版本如果使用whole模式废弃该参数
+      mouseEventHandle : "whole", // default whole,支持whole的cloudapp使用whole,不支持的不设置或者使用default
+      moveScaleFactor : 1, //鼠标移动灵敏度
+	  openMicrophone: false,//开启麦克风，必须https方式
+      ignoreKeyboardKeys : [
+        cloudDesktopApp.keyMsgType.KEYCODE_F11
+      ], //键盘按下是不向服务器发送该按键消息的按键列表
+    };
+    var isShowUEMessageTestInput = true;
+     //应用画面将显示在id为desktop对应的dom元素上
+    cloudDesktopApp.loadApp("desktop",LoadParams);
+    cloudDesktopApp.on('stat',function(data){
+      var stat = data;
+    });
+    cloudDesktopApp.on('ready',function(){
+      console.log('conn ready');
+    });
+    cloudDesktopApp.on('dataChannelConnected',function(data){
+      console.log('conn dataChannelConnected');
+      setTimeout(function () {
+        $(".datachannel").show();
+      },500);
+      $("#sendChannelDataBtn").click(function(){
+        var sendData = $("#sendChannelData").val();
+        console.log("sendData",sendData);
+        cloudDesktopApp.sendDataChannelMsg(true,cloudDesktopApp.tools.StrToUint8Array(sendData));
+        $.alert({
+          title: '提示',
+          content: '发送成功!',
+        });
+      });
+    });
+    cloudDesktopApp.on('dataChannelDisConnected',function(data){
+      console.log('conn dataChannelConnected');
+    });
+    cloudDesktopApp.on('dataChannel',function(isText,data){
+      var dataStr = cloudDesktopApp.tools.Utf8ArrayToStr(data);
+      var sendInput = $("#showChannelData").get(0);
+      if(sendInput){
+        sendInput.value = sendInput.value + "\n" + dataStr;
+        //cloudDesktopApp.sendDataChannelMsg(isText,cloudDesktopApp.tools.StrToUint8Array("555"));
+      }
+    });
+    $(".full").click(function(){
+      cloudDesktopApp.appEnterFullscreen();
+    });
+    $(".exit").click(function(){
+      cloudDesktopApp.appExitFullscreen();
+    });
+    cloudDesktopApp.on('exit',function(exitCode){
+      console.log("exit_code",exitCode);
+      if(exitCode === cloudDesktopApp.exitReasonCode.EXIT_CODE_NORMAL){
+        console.log('exit success');
+      }else if(exitCode === cloudDesktopApp.exitReasonCode.EXIT_CODE_CONN_ABORT_OF_NO_AVAILABLE){
+        console.log('暂无可用服务器');
+      }else{
+        console.log('other err');
+      }
+      $(".datachannel").hide();
+    });
+   });
+   function getUserSign(reqTime,userKey){
+      var userSign  = hex_md5(hex_md5(userKey+"dolitclouddesktop")+hex_md5(userKey+reqTime));
+      return userSign;
+   }
+   function hide(ele){
+     ele.style.display = "none";
+   }
+   function checkIE(){
+    var userAgent = navigator.userAgent;
+    var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1;
+    var isIE11 = userAgent.indexOf('Trident')  > -1 && userAgent.indexOf("rv:11.0") > -1;
+    if(isIE || isIE11){
+      return true;
+    }else{
+      return false;
+    }
+  }
+</script>
+</body>
+</html>

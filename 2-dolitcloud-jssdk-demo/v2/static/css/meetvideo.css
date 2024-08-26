@@ -1,0 +1,563 @@
+/*会议视频接口start*/
+/*拖拽样式图标*/
+#meet_video .resizeBR {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    cursor: nw-resize;
+    background: url(../image/resize.png) no-repeat;
+}
+
+#meet_video .resizeL,#meet_video .resizeT,#meet_video .resizeR,#meet_video .resizeB,#meet_video .resizeLT,#meet_video .resizeTR,#meet_video .resizeLB {
+    position: absolute;
+    background: #000;
+    overflow: hidden;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+#meet_video .resizeL,#meet_video .resizeR {
+    top: 0;
+    width: 5px;
+    height: 100%;
+    cursor: w-resize;
+}
+
+#meet_video .resizeR {
+    right: 0;
+}
+
+#meet_video .resizeT,#meet_video .resizeB {
+    width: 100%;
+    height: 5px;
+    cursor: n-resize;
+}
+
+#meet_video .resizeT {
+    top: 0;
+}
+
+#meet_video .resizeB {
+    bottom: 0;
+}
+
+#meet_video .resizeLT,#meet_video .resizeTR,#meet_video .resizeLB {
+    width: 8px;
+    height: 8px;
+    background: #FF0;
+}
+
+#meet_video .resizeLT {
+    top: 0;
+    left: 0;
+    cursor: nw-resize;
+}
+
+#meet_video .resizeTR {
+    top: 0;
+    right: 0;
+    cursor: ne-resize;
+}
+
+#meet_video .resizeLB {
+    left: 0;
+    bottom: 0;
+    cursor: ne-resize;
+}
+
+
+#meet_video {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 204px;
+    height: 800px;
+    background: #232323;
+    border: 1px solid #444;
+    border-radius: 5px;
+    box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.3);
+    border-bottom: 1px solid #A1B4B0;
+    z-index: 1000;
+}
+
+#meet_video .title {
+    position: relative;
+    height: 36px;
+    background: #232323;
+
+}
+
+#meet_video .title .name {
+    font-size: 14px;
+
+    font-family: MicrosoftYaHei;
+    color: #ACADAE;
+    line-height: 36px;
+    margin-left: 10px;
+
+
+}
+
+
+
+#meet_video .title a.revert {
+
+    display: none;
+}
+#meet_video .title .op {
+    position: absolute;
+    height: 36px;
+    top: 0px;
+    right: 2px;
+}
+
+#meet_video .title a {
+    float: left;
+    width: 28px;
+    height: 36px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#meet_video .title .opv-item:hover {
+    opacity: 1;
+    background: rgba(224, 222, 221, 0.2);
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#meet_video .content {
+    width:100%;
+    display: -webkit-flex; /* Safari */
+    display: flex;
+    flex-wrap:  wrap;
+    overflow-y: auto;
+}
+
+/* 隐藏默认的滚动条 */
+::-webkit-scrollbar {
+    display: none;
+}
+
+#meet_video .set{
+    width: 100%;
+    height: 30px;
+    background: #2D2D2D;
+    display:flex;
+
+    justify-content: space-around;
+    align-items: center;
+}
+#meet_video .set .set-item{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height:30px;
+    width:30px;
+
+}
+.set-item:hover{
+    opacity: 1;
+    background: rgba(224, 222, 221, 0.2);
+    width:30px;
+}
+
+#meet_video .content .item {
+    width: 200px;
+    border: 2px solid  #090908;
+    height: 110px;
+    position:relative;
+}
+
+
+#meet_video .content video {
+    width: 100%;
+    height: 110px;
+    background: #2E303;
+}
+#meet_video .content .name {
+    position:absolute;
+    bottom:-2px;
+    left:0px;
+
+    width: 76px;
+    height: 24px;
+    background: #000000;
+    opacity: 0.6;
+
+    font-size: 12px;
+    font-family: MicrosoftYaHei;
+    color: #FFFFFF;
+    line-height: 24px;
+    text-align:center ;
+}
+/*会议视频接口end*/
+
+/*共享屏幕弹窗样式start*/
+/*拖拽边界样式start*/
+#screen_share .resizeBR {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    cursor: nw-resize;
+    background: url(../image/resize.png) no-repeat;
+}
+
+#screen_share .resizeL,#screen_share .resizeT,#screen_share .resizeR,#screen_share .resizeB,#screen_share .resizeLT,#screen_share .resizeTR,#screen_share .resizeLB {
+    position: absolute;
+    background: #000;
+    overflow: hidden;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+#screen_share .resizeL,#screen_share .resizeR {
+    top: 0;
+    width: 5px;
+    height: 100%;
+    cursor: w-resize;
+}
+
+#screen_share .resizeR {
+    right: 0;
+}
+
+#screen_share .resizeT,#screen_share .resizeB {
+    width: 100%;
+    height: 5px;
+    cursor: n-resize;
+}
+
+#screen_share .resizeT {
+    top: 0;
+}
+
+#screen_share .resizeB {
+    bottom: 0;
+}
+
+#screen_share .resizeLT,#screen_share .resizeTR,#screen_share .resizeLB {
+    width: 8px;
+    height: 8px;
+    background: #FF0;
+}
+
+#screen_share .resizeLT {
+    top: 0;
+    left: 0;
+    cursor: nw-resize;
+}
+
+#screen_share .resizeTR {
+    top: 0;
+    right: 0;
+    cursor: ne-resize;
+}
+
+#screen_share .resizeLB {
+    left: 0;
+    bottom: 0;
+    cursor: ne-resize;
+}
+/*拖拽边界样式end*/
+#screen_share {
+    position: absolute;
+    z-index: 1001;
+    top: 100px;
+
+    width: 1200px;
+    height: 712px;
+    background: #232323;
+    border: 1px solid #444;
+    border-radius: 5px;
+    box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.3);
+    border-bottom: 1px solid #A1B4B0;
+}
+
+#screen_share .title {
+    position: relative;
+    height: 36px;
+    background: #232323;
+
+}
+
+#screen_share .title .name {
+    font-size: 14px;
+
+    font-family: MicrosoftYaHei;
+    color: #ACADAE;
+    line-height: 36px;
+    margin-left: 12px;
+
+}
+
+
+
+#screen_share .title a.revert {
+    display: none;
+}
+#screen_share .title .op {
+    position: absolute;
+    height: 36px;
+    top: 0px;
+    right: 2px;
+}
+
+#screen_share .title .opv-item {
+    float: left;
+    width: 28px;
+    height: 36px;
+    display: -webkit-flex; /* Safari */
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#screen_share .title .opv-item:hover {
+    opacity: 1;
+    background: rgba(224, 222, 221, 0.2);
+    display: -webkit-flex; /* Safari */
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+}
+#screen_share .content {
+    width:100%;
+    display: -webkit-flex; /* Safari */
+    display: flex;
+    flex-wrap:  wrap;
+    height:95%
+}
+#screen_share .content video{
+    width:100%;
+
+}
+
+.close {
+    opacity:1; /*for bootstrap over*/
+}
+/*共享屏幕弹窗样式end*/
+
+/*会议设置样式start*/
+.meeting-set{
+    transform: translateZ(1001px);
+    z-index: 1001;
+    position: absolute;
+    top: 10%;
+    width: 500px;
+    height: 355px;
+    background: #212121;
+    box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.3);
+    border-radius: 6px;
+}
+.meeting-set-title{
+    margin-left:24px;
+    margin-top: 19px;
+    width: 80px;
+    height: 21px;
+    font-size: 16px;
+    font-family: MicrosoftYaHei-Bold, MicrosoftYaHei;
+    font-weight: bold;
+    color: #FFFFFF;
+    line-height: 21px;
+}
+.meeting-set-icon{
+    width: 4px;
+    height: 12px;
+    background: #3167A0;
+    border-radius: 2px;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.meeting-tips{
+    margin-top:30px;
+    margin-left:44px;
+    height: 19px;
+    font-size: 14px;
+    font-family: MicrosoftYaHei-Bold, MicrosoftYaHei;
+    font-weight: bold;
+    color: #FFFFFF;
+    line-height: 19px;
+
+
+}
+.meeting-content{
+    width: 100%;
+    height: 32px;
+
+    border-radius: 4px;
+    margin-left:75px;
+    margin-top:20px;
+
+
+}
+.meeting-label{
+    margin-top:20px;
+    margin-right:30px;
+    height: 16px;
+    font-size: 12px;
+    font-family: MicrosoftYaHei;
+    color: #FFFFFF;
+    line-height: 16px;
+    display:inline-block;
+}
+.meeting-value{
+    width: 290px  !important;
+    height: 32px;
+    background: #454545;
+    border-radius: 4px;
+    display:inline !important;
+    font-size: 12px;
+    font-family: MicrosoftYaHei;
+    color: #FFFFFF;
+    line-height: 16px;
+    border: 1px #454545;
+}
+.meeting-value option{
+    width: 290px  !important;
+    height: 32px;
+    background: #454545;
+    display:inline !important;
+    font-size: 12px;
+    font-family: MicrosoftYaHei;
+    color: #FFFFFF;
+    line-height: 16px;
+    border: 1px #454545;
+    border-radius: 4px;
+}
+
+.meeting-input-range{
+    position:relative;
+    top:13px;
+
+}
+.meeting-buttons{
+    width:100%;
+    height:63px;
+    border-top: #666666 1px solid;
+    margin-top: 40px;
+    display: flex;
+    justify-content: flex-end;
+}
+.meeting-button-cancel{
+    width: 72px;
+    height: 32px;
+    background: #212121;
+    border-radius: 4px;
+    border: 1px solid #454545;
+    font-size: 12px;
+    font-family: MicrosoftYaHei;
+    color: #FFFFFF;
+    line-height: 32px;
+    display: inline-block;
+    text-align: center;
+    margin: 20px 0;
+}
+.meeting-button-cancel:hover{
+    background: #454545;
+}
+.meeting-button-sure{
+    display: inline-block;
+    width: 72px;
+    height: 32px;
+    background: #3167A0;
+    border-radius: 4px;
+    border: 1px solid #454545;
+    font-size: 12px;
+    font-family: MicrosoftYaHei;
+    color: #FFFFFF;
+    line-height: 32px;
+    margin: 20px 16px;
+    text-align: center;
+}
+.meeting-button-sure:hover{
+    background: #4D92DC;
+}
+
+.meeting-login-panel{
+    z-index: 1003;
+    width: 320px;
+    height: 320px;
+    margin:0 auto;
+    margin-top: 70px;
+    padding-top:30px;
+    background: #212121;
+    box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.3);
+    border-radius: 12px;
+}
+.meeting-username-panel{
+    z-index: 1003;
+    width: 320px;
+    height: 264px;
+    margin:0 auto;
+    margin-top: 20px;
+    padding-top:30px;
+    background: #212121;
+    box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.3);
+    border-radius: 12px;
+}
+.meeting-login-title{
+
+    margin-top: 15px;
+    font-size: 20px;
+    font-family: MicrosoftYaHei, MicrosoftYaHei;
+    font-weight: bold;
+    color: #FFFFFF;
+    line-height: 26px;
+    text-align: center;
+
+}
+.meeting-login-form{
+    margin-top: 40px;
+}
+.meeting-form-group{
+    margin-bottom:24px;
+}
+.meeting-form-control{
+    height: 32px;
+    font-size: 12px;
+}
+.meeting-login-form form{
+    width: 76%;
+    margin: 0 auto;
+}
+.m-msg{
+    color: #e52d20;
+    text-align: center;
+}
+.meeting-btn:hover{
+    background: #24476C;
+}
+.meeting-btn{
+    border-radius: 3px;
+    height: 32px;
+    width: 100%;
+    color: #fff;
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    background: #3167A0;
+}
+/*会议设置样式end*/

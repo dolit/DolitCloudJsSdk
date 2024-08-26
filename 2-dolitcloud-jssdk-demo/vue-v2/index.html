@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>websdk-vue</title>
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/jquery-confirm.min.css">
+    <link rel="stylesheet" href="static/css/webapp.css">
+    <link rel="stylesheet" href="static/css/meetvideo.css">
+    <style>
+      #desktop {
+        position: relative;
+        margin: 0px auto;
+        background-image: url("static/image/bigloadback.jpg");
+        background-position: center center;
+        background-size: cover;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        width: 100%;
+        /*此处设置串流在页面中的宽度*/
+        height: 100%;
+        /*此处设置串流在页面中的高度*/
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .datachannel {
+        transform: translateZ(997px);
+        position: absolute;
+        right: 0px;
+        z-index: 9999;
+        width: 200px;
+        top: 30%;
+        height: 100px;
+        display: none;
+      }
+      #app {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/javascript" src="static/js/jquery1.10.min.js"></script>
+    <script type="text/javascript" src="static/js/md5.js"></script>
+    <script type="text/javascript" src="static/js/jquery-confirm.min.js"></script>
+    <script type="text/javascript" src="static/js/jquery.qrcode.min.js"></script>
+    <script type="text/javascript" src="static/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="static/js/custom-protocol-check.min.js"></script>
+    <script type="text/javascript" src="static/js/adapter-8.0.js"></script>
+    <script type="text/javascript" src="static/js/webstream.min.js"></script>
+    <script type="text/javascript" src="static/js/webaudio.min.js"></script>
+    <script type="text/javascript" src="static/js/dolitcloud.pack.min.js"></script>
+    <script type="text/javascript" src="static/js/vconsole.min.js"></script>
+  </body>
+</html>
