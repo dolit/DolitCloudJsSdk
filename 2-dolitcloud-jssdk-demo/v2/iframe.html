@@ -4,11 +4,11 @@
 	<title>iframe</title>
 </head>
 <body>
-	<iframe id="streamer" style="width: 80%;height: 900px;" src="http://10.0.0.174:9000/app?token=aa4dd522789437bcaf07bc5f2524488e&runType=box&isShowUEMessageTestInput=0" onmouseover="setFocus();"></iframe>
+	<iframe id="streamer" onload="setFocus();" src="http://127.0.0.1:9000/app?token=yourToken&runType=box&isShowUEMessageTestInput=0"  style="width: 80%;height: 900px;" ></iframe>
 </body>
 <script type="text/javascript">
 	function setFocus() {
-          document.getElementById('streamer').contentWindow.focus();
+		document.getElementById('streamer').contentWindow.focus();
     }
 </script>
 
