@@ -27,7 +27,11 @@ export default {
     var loadType = "auto"; //应用加载模式 auto为按应用识别码自动加载,如果使用固定流路方式，则传stream,并设置connToken
     var groupNo = "abcu45168123"; //这里修改为后台云应用列表中的要加载的应用的应用识别码
 
-    var connToken  = "00016c63e4841371ac73078bb710001";//connToken:流路访问token.如果url中已经存在，则此参数可留为空字符串.loadType参数是stream的时候必须设置此参数
+    var connToken  = "";//connToken:流路访问token.如果url中已经存在，则此参数可留为空字符串.loadType参数是stream的时候必须设置此参数
+
+    var sessionId = ""; //访问会话id,32位字符串，auto模式下，流路打开后，再次刷新页面或者打开新的标签页，如果sessionId不变，则一直访问同一个流路，如果更换sessionId了,则自动申请新的并发资源。如果不设置sessionId，默认每次都自动申请新的并发资源。
+
+    var isOpenFixedSession = true; //auto加载模式下，并且sessionId为空的情况下，设置isOpenFixedSession=true,表示sessionId的生成使用系统默认规则，可以实现当前浏览器固定访问流路，刷新页面不申请新并发资源。
 
     var LoadParams = {
         webServerAddr : webServerAddr, //流路的目标服务器地址
@@ -74,6 +78,9 @@ export default {
         openMicrophone: false,//开启麦克风，必须https方式
         moveScaleFactor : 1, //鼠标移动灵敏度
         defaultLang: "default",//默认语言 支持default chs cht en
+        tipLevel: "debug", //错误提示级别，支持debug default。 访问异常时要显示更详细的错误提示请设置为debug
+        sessionId: sessionId, //访问会话id,32位字符串，auto模式下，流路打开后，再次刷新页面或者打开新的标签页，如果sessionId不变，则一直访问同一个流路，如果更换sessionId了,则自动申请新的并发资源。如果不设置sessionId，默认每次都自动申请新的并发资源。
+        isOpenFixedSession: isOpenFixedSession, //auto加载模式下，并且sessionId为空的情况下，设置isOpenFixedSession=true,表示sessionId的生成使用系统默认规则，可以实现当前浏览器固定访问流路，刷新页面不申请新并发资源。
         ignoreKeyboardKeys : [
           cloudDesktopApp.keyMsgType.KEYCODE_F11
         ], //键盘按下是不向服务器发送该按键消息的按键列表

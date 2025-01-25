@@ -48,12 +48,18 @@
         var loadType = "group"; //应用加载模式 group为按应用识别码自动加载
         var groupNo = "abcu45168123"; //这里修改为后台云应用列表中的要加载的应用的应用识别码
 
+        var connToken  = "";//connToken:流路访问token.如果url中已经存在，则此参数可留为空字符串.loadType参数是stream的时候必须设置此参数
+
+        var sessionId = ""; //访问会话id,32位字符串，auto模式下，流路打开后，再次刷新页面或者打开新的标签页，如果sessionId不变，则一直访问同一个流路，如果更换sessionId了,则自动申请新的并发资源。如果不设置sessionId，默认每次都自动申请新的并发资源。
+
+        var isOpenFixedSession = true; //auto加载模式下，并且sessionId为空的情况下，设置isOpenFixedSession=true,表示sessionId的生成使用系统默认规则，可以实现当前浏览器固定访问流路，刷新页面不申请新并发资源。
+
         var LoadParams = {
              webServerAddr : webServerAddr, 
              reqTime       : reqTime,
              userKey       : userKey,
              userSign      : userSign,
-             connToken     : "",
+             connToken     : connToken,
              connMode      : "sdk",
              runType       : "app",
              pointerMode   : "default",
@@ -80,6 +86,10 @@
              isAutoExists:  1 ,
              isShowReloadMenu : true,
              isAutoShowCnInput: true,
+             sessionId: sessionId,
+             isOpenFixedSession: isOpenFixedSession,
+             defaultLang: "chs",
+             tipLevel: "debug",
              joystickLeftKey : cloudDesktopApp.keyMsgType.KEYCODE_LEFT_ARROW,
              joystickRightKey : cloudDesktopApp.keyMsgType.KEYCODE_RIGHT_ARROW,
              joystickDownKey : cloudDesktopApp.keyMsgType.KEYCODE_DOWN_ARROW,
@@ -185,6 +195,10 @@ cloudDesktopApp.loadApp(domid,params);
               isShowResolutionMenu : 是否显示分辨率列表 【布尔值 true or false】
               isShowShortcutControlMenu : 是否显示控制按钮 【布尔值 true or false】
               isShowReloadMenu :  是否显示重启应用按钮 【布尔值 true or false】
+              defaultLang: 默认语言 支持default【自适应】 chs【中文简体】 cht【中文繁体】 en【英文】
+              tipLevel: 错误提示级别，访问异常时要显示更详细的错误提示请设置为debug  支持【debug】 调试模式 【default】 默认模式
+              sessionId: 访问会话id,32位字符串，auto模式下，流路打开后，再次刷新页面或者打开新的标签页，如果sessionId
+              isOpenFixedSession: auto加载模式下，并且sessionId为空的情况下，设置isOpenFixedSession=true,表示sessionId的生成使用系统默认规则，可以实现当前浏览器固定访问流路，刷新页面不申请新并发资源
               joystickLeftKey : 手柄向左滑动模拟的键盘按键【默认 cloudDesktopApp.keyMsgType.KEYCODE_A】
               joystickRightKey : 手柄向右滑动模拟的键盘按键【默认cloudDesktopApp.keyMsgType.KEYCODE_D】
               joystickDownKey : 手柄向下滑动模拟的键盘按键【默认cloudDesktopApp.keyMsgType.KEYCODE_S】
