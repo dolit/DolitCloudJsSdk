@@ -83,7 +83,7 @@
              isShowPointer :  true ,    
              isShowRemotePointer :  false , 
              isReceiveAudio:  true ,
-             isAutoExists:  1 ,
+             isAutoExit:  1 ,
              isShowReloadMenu : true,
              isAutoShowCnInput: true,
              sessionId: sessionId,
@@ -189,7 +189,7 @@ cloudDesktopApp.loadApp(domid,params);
               isShortcutParam: 是否启用显示隐藏延迟参数的快捷键 【布尔值 true or false】
               isShowPointer :  /是否显示用户浏览器所在系统的鼠标 【布尔值 true or false】
               isReceiveAudio:  是否接受音频数据 【布尔值 true or false】
-              isAutoExists:  长时间无操作是否自动退出画面 【布尔值 true or false】
+              isAutoExit:  长时间无操作是否自动退出画面 【布尔值 true or false】
               isShowDefinitionMenu : 是否显示清晰度列表 【布尔值 true or false】
               isShowScaleMenu : 是否显示画面比例菜单 【布尔值 true or false】
               isShowResolutionMenu : 是否显示分辨率列表 【布尔值 true or false】

@@ -61,7 +61,7 @@ export default {
         isShowPointer :  true ,  //是否显示用户浏览器所在系统的鼠标
         isShowRemotePointer :  false ,  // 是否显示远端所在系统的鼠标
         isReceiveAudio:  true ,  //是否接受音频
-        isAutoExists:  1 ,  //页面没有人操作超过一定时间时是否自动退出
+        isAutoExit:  1 ,  //页面没有人操作超过一定时间时是否自动退出
         isShowReloadMenu : true, //是否显示重启按钮
         isShowDefinitionMenu : true, //是否显示清晰度列表
         isShowScaleMenu : true, //是否显示画面比例菜单
